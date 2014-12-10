@@ -6,7 +6,7 @@ class SkroutzApi::PaginatedCollection < Array
   def initialize(context, response)
     @context = context
     @response = response
-    super(parse_body(response)[context.resource_prefix])
+    super(parse_array(response, context.resource_prefix))
   end
 
   def is_at_first?
