@@ -1,6 +1,6 @@
 # skroutz-api.rb
 
-Ruby API client for Skroutz /.Alve / Scrooge
+Ruby API client for Skroutz / Alve / Scrooge
 
 ## Install
 
