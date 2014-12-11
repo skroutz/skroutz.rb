@@ -8,8 +8,12 @@ class SkroutzApi::Resource
     @client = client
   end
 
+  def resource
+    @resource_prefix ||= self.class.to_s.demodulize.downcase
+  end
+
   def resource_prefix
-    @resource_prefix ||= self.class.to_s.demodulize.downcase.pluralize
+    @resource_prefix ||= resource.pluralize
   end
 
   protected
