@@ -15,6 +15,7 @@ module SkroutzApi
   autoload :Category, 'skroutz_api/category'
   autoload :CategoriesCollection, 'skroutz_api/categories_collection'
   autoload :Sku, 'skroutz_api/sku'
+  autoload :SkusCollection, 'skroutz_api/skus_collection'
   autoload :Product, 'skroutz_api/product'
   autoload :Shop, 'skroutz_api/shop'
   autoload :Manufacturer, 'skroutz_api/manufacturer'
