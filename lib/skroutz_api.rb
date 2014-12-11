@@ -28,5 +28,6 @@ module SkroutzApi
   autoload :Favorite, 'skroutz_api/favorite'
   autoload :FavoritesCollection, 'skroutz_api/favorites_collection'
   autoload :Notification, 'skroutz_api/notification'
+  autoload :NotificationsCollection, 'skroutz_api/notifications_collection'
   autoload :PaginatedCollection, 'skroutz_api/paginated_collection'
 end
