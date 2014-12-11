@@ -10,6 +10,7 @@ module SkroutzApi
   autoload :Default, 'skroutz_api/default'
   autoload :Parsing, 'skroutz_api/parsing'
   autoload :Resource, 'skroutz_api/resource'
+  autoload :UrlHelpers, 'skroutz_api/url_helpers'
   autoload :Category, 'skroutz_api/category'
   autoload :Sku, 'skroutz_api/sku'
   autoload :Product, 'skroutz_api/product'
