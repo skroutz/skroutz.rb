@@ -1,6 +1,8 @@
 class SkroutzApi::PaginatedCollection < Array
   include SkroutzApi::Parsing
 
+  delegate :model_name, :client, to: :context
+
   attr_reader :response, :context
 
   def initialize(context, response)
