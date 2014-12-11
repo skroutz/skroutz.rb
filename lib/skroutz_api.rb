@@ -13,6 +13,7 @@ module SkroutzApi
   autoload :UrlHelpers, 'skroutz_api/url_helpers'
   autoload :CollectionProxy, 'skroutz_api/collection_proxy'
   autoload :Category, 'skroutz_api/category'
+  autoload :CategoriesCollection, 'skroutz_api/categories_collection'
   autoload :Sku, 'skroutz_api/sku'
   autoload :Product, 'skroutz_api/product'
   autoload :Shop, 'skroutz_api/shop'
