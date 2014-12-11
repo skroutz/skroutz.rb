@@ -26,6 +26,7 @@ module SkroutzApi
   autoload :FilterGroup, 'skroutz_api/filter_group'
   autoload :FilterGroupsCollection, 'skroutz_api/filter_groups_collection'
   autoload :Favorite, 'skroutz_api/favorite'
+  autoload :FavoritesCollection, 'skroutz_api/favorites_collection'
   autoload :Notification, 'skroutz_api/notification'
   autoload :PaginatedCollection, 'skroutz_api/paginated_collection'
 end
