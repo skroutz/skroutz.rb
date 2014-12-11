@@ -21,6 +21,7 @@ module SkroutzApi
   autoload :Shop, 'skroutz_api/shop'
   autoload :ShopsCollection, 'skroutz_api/shops_collection'
   autoload :Manufacturer, 'skroutz_api/manufacturer'
+  autoload :ManufacturersCollection, 'skroutz_api/manufacturers_collection'
   autoload :Search, 'skroutz_api/search'
   autoload :FilterGroup, 'skroutz_api/filter_group'
   autoload :Favorite, 'skroutz_api/favorite'
