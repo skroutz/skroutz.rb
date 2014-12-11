@@ -43,7 +43,7 @@ class SkroutzApi::Client
      favorite notification].each do |resource|
 
     define_method resource.pluralize do
-      "SkroutzApi::#{resource.capitalize}".constantize.new self
+      "SkroutzApi::#{resource.classify.pluralize}Collection".constantize.new self
     end
   end
 
