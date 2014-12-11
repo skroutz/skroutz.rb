@@ -1,1 +1,5 @@
-class SkroutzApi::Shop < SkroutzApi::Resource; end
+class SkroutzApi::Shop < SkroutzApi::Resource
+  def products
+    SkroutzApi::ProductsCollection.new(client, self)
+  end
+end
