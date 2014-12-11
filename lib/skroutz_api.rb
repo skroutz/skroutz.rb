@@ -24,6 +24,7 @@ module SkroutzApi
   autoload :ManufacturersCollection, 'skroutz_api/manufacturers_collection'
   autoload :Search, 'skroutz_api/search'
   autoload :FilterGroup, 'skroutz_api/filter_group'
+  autoload :FilterGroupsCollection, 'skroutz_api/filter_groups_collection'
   autoload :Favorite, 'skroutz_api/favorite'
   autoload :Notification, 'skroutz_api/notification'
   autoload :PaginatedCollection, 'skroutz_api/paginated_collection'
