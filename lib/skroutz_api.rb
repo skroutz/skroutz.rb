@@ -4,6 +4,7 @@ require 'faraday_middleware'
 require 'active_support/all'
 
 require 'skroutz_api/version'
+require 'skroutz_api/errors'
 
 module SkroutzApi
   autoload :Client, 'skroutz_api/client'
