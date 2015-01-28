@@ -6,6 +6,7 @@ class SkroutzApi::Default
   AUTHORIZATION_CODE_ENDPOINT = '/oauth2/authorizations/new'
   TOKEN_ENDPOINT              = '/oauth2/token'
   PAGINATION_PAGE_SIZE        = 25
+  APPLICATION_PERMISSIONS     = %w[public]
 
   class << self
     def to_hash
