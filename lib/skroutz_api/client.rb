@@ -3,10 +3,10 @@ class SkroutzApi::Client
 
   delegate(*(%w[get post put patch delete head options]), to: :conn)
 
-  def initialize(client_id, client_secret, config = nil)
+  def initialize(client_id, client_secret, config = {})
     @client_id = client_id
     @client_secret = client_secret
-    @config = config || SkroutzApi::Default.to_hash
+    @config = SkroutzApi::Default.to_hash.merge config
   end
 
   def oauth_client
