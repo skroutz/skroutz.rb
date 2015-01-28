@@ -32,7 +32,10 @@ class SkroutzApi::Client
   end
 
   def application_token
-    oauth_client.client_credentials.get_token(scope: 'public').token
+    oauth_client.
+      client_credentials.
+      get_token(scope: config[:application_permissions].join(' ')).
+      token
   end
 
   def user_token
