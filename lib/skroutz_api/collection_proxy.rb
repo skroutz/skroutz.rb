@@ -37,6 +37,15 @@ class SkroutzApi::CollectionProxy
     yield response
   end
 
+  def mget(ids)
+    response = client.get("internal/#{base_path}/mget", ids: [*ids])
+    raise SkroutzApi::ResourceNotFound.new(response) unless response.success?
+
+    return SkroutzApi::PaginatedCollection.new(self, response) unless block_given?
+
+    yield response
+  end
+
   def resource
     @resource ||= self.class.to_s.demodulize.chomp('Collection').downcase.singularize
   end
