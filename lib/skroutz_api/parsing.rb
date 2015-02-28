@@ -9,6 +9,8 @@ module SkroutzApi::Parsing
     (JSON.parse response.body)[resource_prefix].map do |resource|
       model_name.new(resource, client)
     end
+  rescue JSON::ParserError
+    raise SkroutzApi::InvalidResource.new(model_name.to_s, response.body)
   end
 
   def link_header(response)
