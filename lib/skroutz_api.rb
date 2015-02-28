@@ -7,28 +7,23 @@ require 'skroutz_api/version'
 require 'skroutz_api/errors'
 
 module SkroutzApi
+  RESOURCES = %w[category sku product shop manufacturer filter_group favorite notification]
+
   autoload :Client, 'skroutz_api/client'
   autoload :Default, 'skroutz_api/default'
   autoload :Parsing, 'skroutz_api/parsing'
   autoload :Resource, 'skroutz_api/resource'
   autoload :UrlHelpers, 'skroutz_api/url_helpers'
   autoload :CollectionProxy, 'skroutz_api/collection_proxy'
-  autoload :Category, 'skroutz_api/category'
-  autoload :CategoriesCollection, 'skroutz_api/categories_collection'
-  autoload :Sku, 'skroutz_api/sku'
-  autoload :SkusCollection, 'skroutz_api/skus_collection'
-  autoload :Product, 'skroutz_api/product'
-  autoload :ProductsCollection, 'skroutz_api/products_collection'
-  autoload :Shop, 'skroutz_api/shop'
-  autoload :ShopsCollection, 'skroutz_api/shops_collection'
-  autoload :Manufacturer, 'skroutz_api/manufacturer'
-  autoload :ManufacturersCollection, 'skroutz_api/manufacturers_collection'
-  autoload :Search, 'skroutz_api/search'
-  autoload :FilterGroup, 'skroutz_api/filter_group'
-  autoload :FilterGroupsCollection, 'skroutz_api/filter_groups_collection'
-  autoload :Favorite, 'skroutz_api/favorite'
-  autoload :FavoritesCollection, 'skroutz_api/favorites_collection'
-  autoload :Notification, 'skroutz_api/notification'
-  autoload :NotificationsCollection, 'skroutz_api/notifications_collection'
   autoload :PaginatedCollection, 'skroutz_api/paginated_collection'
+
+  RESOURCES.each do |resource|
+    autoload resource.capitalize.to_sym, "skroutz_api/#{resource}"
+
+    resource_collection = "#{resource.pluralize}Collection"
+    autoload "#{resource_collection.classify}".to_sym,
+             "skroutz_api/#{resource_collection.underscore}"
+  end
+
+  autoload :Search, 'skroutz_api/search'
 end
