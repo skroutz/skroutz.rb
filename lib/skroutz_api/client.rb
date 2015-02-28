@@ -42,9 +42,7 @@ class SkroutzApi::Client
     raise NotImplementedError
   end
 
-  %w[category sku product shop manufacturer filter_group
-     favorite notification].each do |resource|
-
+  SkroutzApi::RESOURCES.each do |resource|
     define_method resource.pluralize do
       "SkroutzApi::#{resource.classify.pluralize}Collection".constantize.new self
     end
