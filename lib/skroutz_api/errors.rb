@@ -13,14 +13,16 @@ module SkroutzApi
 
   # Raised when SkroutzApi doesn't find the requested resource
   class ResourceNotFound < SkroutzApiError
-    def initialize(response)
-      super %Q(status: #{response.status}, body: "#{response.body}")
+    def initialize(status, body)
+      super %Q(status: #{status}, body: "#{body}")
     end
   end
 
   class ErrorHandler < Faraday::Response::Middleware
     def on_complete(env)
       case env[:status]
+      when 404, 410
+        raise SkroutzApi::ResourceNotFound.new(env.status, env.body)
       when 500...600
         raise SkroutzApi::ServerError.new(env.status, env.body)
       end
