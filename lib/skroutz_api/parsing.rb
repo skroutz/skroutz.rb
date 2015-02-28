@@ -1,6 +1,8 @@
 module SkroutzApi::Parsing
   def parse_body(response)
     model_name.new((JSON.parse response.body)[resource_prefix.singularize], client)
+  rescue JSON::ParserError
+    raise SkroutzApi::InvalidResource.new(model_name.to_s, response.body)
   end
 
   def parse_array(response, resource_prefix)
