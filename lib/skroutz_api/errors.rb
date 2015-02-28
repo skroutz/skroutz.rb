@@ -11,6 +11,13 @@ module SkroutzApi
     end
   end
 
+  # Raised when SkroutzApi can't parse the response for the resource
+  class InvalidResource < SkroutzApiError
+    def initialize(resource, body)
+      super %Q(resource: #{resource}, body: "#{body}")
+    end
+  end
+
   # Raised when SkroutzApi doesn't find the requested resource
   class ResourceNotFound < SkroutzApiError
     def initialize(status, body)
