@@ -9,16 +9,6 @@ class SkroutzApi::Client
     @config = SkroutzApi::Default.to_hash.merge config
   end
 
-  def oauth_client
-    @oauth_client ||= ::OAuth2::Client.
-      new(client_id,
-          client_secret,
-          site: config[:oauth_endpoint],
-          authorize_url: config[:authorization_code_endpoint],
-          token_url: config[:token_endpoint],
-          user_agent: config[:user_agent])
-  end
-
   def token
     @token ||= application_token
   end
@@ -57,6 +47,16 @@ class SkroutzApi::Client
   end
 
   private
+
+  def oauth_client
+    @oauth_client ||= ::OAuth2::Client.
+      new(client_id,
+          client_secret,
+          site: config[:oauth_endpoint],
+          authorize_url: config[:authorization_code_endpoint],
+          token_url: config[:token_endpoint],
+          user_agent: config[:user_agent])
+  end
 
   def default_headers
     {
