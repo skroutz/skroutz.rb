@@ -1,0 +1,41 @@
+AllCops:
+  Exclude:
+    - 'Guardfile'
+
+Style/LineLength:
+  Max: 120
+
+Style/MethodLength:
+  Max: 20
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Encoding:
+  EnforcedStyle: when_needed
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    "%w": "[]"
+
+Style/RaiseArgs:
+  EnforcedStyle: compact
+
+Style/SpaceInsideBlockBraces:
+  EnforcedStyleForEmptyBraces: space
+
+Style/Blocks:
+  Exclude:
+    - spec/**/*.rb
+
+Style/EachWithObject:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
