@@ -8,4 +8,6 @@ group :development do
   gem 'pry-debugger', platforms: :mri_19
   gem 'pry-byebug', platforms: :mri_21
   gem 'pry-doc'
+
+  gem 'guard-rspec', require: false
 end
