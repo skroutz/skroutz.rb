@@ -10,4 +10,5 @@ group :development do
   gem 'pry-doc'
 
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop', require: false
 end
