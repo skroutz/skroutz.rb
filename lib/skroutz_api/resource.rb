@@ -16,6 +16,16 @@ class SkroutzApi::Resource
     @resource_prefix ||= resource.pluralize
   end
 
+  def inspect
+    if attributes.present?
+      inspection = attributes.map { |k, v| "#{k}: #{v}" }.join(', ')
+    else
+      inspection = 'not initialized'
+    end
+
+    "#<#{self.class} #{inspection}>"
+  end
+
   protected
 
   def respond_to?(method, include_priv = false)
