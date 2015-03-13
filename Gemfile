@@ -9,6 +9,9 @@ group :development do
   gem 'pry-byebug', platforms: :mri_21
   gem 'pry-doc'
 
-  gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
+end
+
+group :test do
+  gem 'guard-rspec', require: false
 end
