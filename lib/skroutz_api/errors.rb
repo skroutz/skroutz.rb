@@ -41,4 +41,16 @@ module SkroutzApi
       end
     end
   end
+
+  class TimeoutHandler < Faraday::Middleware
+    def initialize(app)
+      super(app)
+    end
+
+    def call(env)
+      @app.call(env)
+      rescue Faraday::TimeoutError
+        raise SkroutzApi::TimeoutError
+    end
+  end
 end
