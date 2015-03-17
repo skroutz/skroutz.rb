@@ -2,6 +2,8 @@ require 'skroutz_api'
 
 require 'webmock/rspec'
 
+Dir['./spec/support/**/*.rb'].sort.each(&method(:require))
+
 WebMock.disable_net_connect!
 
 RSpec.configure do |config|
