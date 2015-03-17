@@ -1,7 +1,7 @@
 class SkroutzApi::Client
   attr_accessor :client_id, :client_secret, :config
 
-  delegate(*(%w[get post put patch delete head options]), to: :conn)
+  delegate(*Faraday::Connection::METHODS, to: :conn)
 
   def initialize(client_id, client_secret, config = {})
     @client_id = client_id
