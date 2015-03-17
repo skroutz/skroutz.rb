@@ -25,6 +25,12 @@ module SkroutzApi
     end
   end
 
+  class TimeoutError < SkroutzApiError
+    def initialize
+      super 'The server did not produce a response within the configured time to wait'
+    end
+  end
+
   class ErrorHandler < Faraday::Response::Middleware
     def on_complete(env)
       case env[:status]
