@@ -21,6 +21,7 @@ class SkroutzApi::Client
 
       c.adapter @config[:adapter] || Faraday.default_adapter
       c.headers = default_headers
+      c.options.timeout = @config[:timeout]
     end
   end
 
