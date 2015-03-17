@@ -30,4 +30,12 @@ shared_examples 'an error handled request' do
       end
     end
   end
+
+  describe 'response timeout' do
+    let(:response) { request_stub.to_timeout }
+
+    it 'raises SkroutzApi::TimeoutError' do
+      expect { request }.to raise_error(SkroutzApi::TimeoutError)
+    end
+  end
 end
