@@ -45,3 +45,29 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+[:get, :head, :patch, :post, :put, :delete].each do |verb|
+  Object.send :define_method, "stub_#{verb}" do |path|
+    stub_api_call(verb, path)
+  end
+end
+
+def stub_api_call(verb, path)
+  stub_request(verb, "#{SkroutzApi::Default.to_hash[:api_endpoint]}/#{path}")
+end
+
+def fixture_path
+  File.expand_path('../fixtures', __FILE__)
+end
+
+def fixture(key)
+  @fixtures_memo ||= {}
+  @fixtures_memo[key] ||= begin
+    YAML.load_file(File.join(fixture_path, "#{key}.yml"))
+  end
+end
+
+def stub_with_fixture(verb, path, key)
+  send("stub_#{verb}", path).to_return(headers: fixture(key)[:headers],
+                                       body: fixture(key)[:body])
+end
