@@ -1,5 +1,9 @@
 require 'skroutz_api'
 
+require 'webmock/rspec'
+
+WebMock.disable_net_connect!
+
 RSpec.configure do |config|
   # Formatting
   config.formatter = :documentation
