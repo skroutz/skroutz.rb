@@ -17,9 +17,9 @@ class SkroutzApi::Client
     @conn ||= Faraday.new(config[:api_endpoint]) do |c|
       c.use ::FaradayMiddleware::FollowRedirects, limit: 5
       c.use ::SkroutzApi::ErrorHandler
-      c.adapter Faraday.default_adapter
       c.use Faraday::Response::Logger, @config[:logger] if @config[:logger]
 
+      c.adapter @config[:adapter] || Faraday.default_adapter
       c.headers = default_headers
     end
   end
