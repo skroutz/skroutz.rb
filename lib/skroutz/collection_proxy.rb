@@ -52,11 +52,12 @@ class Skroutz::CollectionProxy
   def method_missing(method, *args, &block)
     options = args.first || {}
     url_prefix = options.delete(:url_prefix) || ''
+    verb = options.delete(:verb) || options.delete(:via) || :get
 
     target_url = "#{base_path}/#{id}/#{method}"
     target_url.prepend("#{url_prefix}/") if url_prefix
 
-    response = client.get(target_url, options)
+    response = client.send(verb, target_url, options)
 
     return parse(response) unless block_given?
 
