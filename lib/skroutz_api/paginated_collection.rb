@@ -38,4 +38,8 @@ class SkroutzApi::PaginatedCollection < Array
       yield response
     end
   end
+
+  def meta
+    @meta ||= parse_meta(response)
+  end
 end
