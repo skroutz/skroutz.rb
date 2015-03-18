@@ -5,10 +5,11 @@ class SkroutzApi::PaginatedCollection < Array
 
   attr_reader :response, :context
 
-  def initialize(context, response)
+  def initialize(context, response, collection)
     @context = context
     @response = response
-    super(parse_array(response, context.resource_prefix))
+
+    super(collection)
   end
 
   def is_at_first?
