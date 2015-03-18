@@ -50,6 +50,10 @@ class SkroutzApi::Client
     yield response
   end
 
+  def client
+    self
+  end
+
   private
 
   def oauth_client
