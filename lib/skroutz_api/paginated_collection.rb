@@ -26,7 +26,7 @@ class SkroutzApi::PaginatedCollection < Array
     end
 
     define_method "#{meth}_page" do |options = {}|
-      return [] if !self.send("#{meth}?")
+      return if !self.send("#{meth}?")
 
       target_uri = link_header(self.response)[meth.to_sym]
       gateway = context.respond_to?(:get) ? context : context.client
