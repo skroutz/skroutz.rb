@@ -24,7 +24,7 @@ module Skroutz::Parsing
   end
 
   def parse_meta(response)
-    HashWithIndifferentAccess.new(JSON.parse(response.body)['meta'])
+    HashWithIndifferentAccess.new(JSON.parse(response.body).fetch('meta', {}))
   end
 
   def link_header(response)
