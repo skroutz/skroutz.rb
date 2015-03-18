@@ -2,9 +2,10 @@ class Skroutz::CollectionProxy
   include Skroutz::Parsing
   include Skroutz::UrlHelpers
 
-  attr_accessor :client, :owner
+  attr_accessor :id, :client, :owner
 
-  def initialize(client, owner = nil)
+  def initialize(id, client, owner = nil)
+    @id = id
     @client = client
     @owner = owner
   end
@@ -44,5 +45,21 @@ class Skroutz::CollectionProxy
 
   def model_name
     @model_name ||= "Skroutz::#{resource.classify}".constantize
+  end
+
+  private
+
+  def method_missing(method, *args, &block)
+    options = args.first || {}
+    url_prefix = options.delete(:url_prefix) || ''
+
+    target_url = "#{base_path}/#{id}/#{method}"
+    target_url.prepend("#{url_prefix}/") if url_prefix
+
+    response = client.get(target_url, options)
+
+    return parse(response) unless block_given?
+
+    yield response
   end
 end
