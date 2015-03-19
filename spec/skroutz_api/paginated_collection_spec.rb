@@ -38,8 +38,8 @@ describe SkroutzApi::PaginatedCollection do
     end
   end
 
-  describe '#is_at_first?' do
-    subject { paginated_collection.is_at_first? }
+  describe '#first_page?' do
+    subject { paginated_collection.first_page? }
 
     context 'when the current page is the first' do
       let(:headers) do

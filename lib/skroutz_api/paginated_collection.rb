@@ -12,7 +12,7 @@ class SkroutzApi::PaginatedCollection < Array
     super(collection)
   end
 
-  def is_at_first?
+  def first_page?
     !first?
   end
 
