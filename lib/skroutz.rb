@@ -5,6 +5,7 @@ require 'active_support/all'
 
 require 'skroutz/version'
 require 'skroutz/errors'
+require 'skroutz/inflections'
 
 module Skroutz
   RESOURCES = %w[category sku product shop manufacturer filter_group favorite notification]
