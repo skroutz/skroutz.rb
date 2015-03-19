@@ -57,6 +57,14 @@ class Skroutz::Client
     self
   end
 
+  def autocomplete(q, options = {})
+    response = get 'autocomplete', { q: q }.merge(options)
+
+    return parse(response) unless block_given?
+
+    yield response
+  end
+
   private
 
   def oauth_client
