@@ -16,7 +16,7 @@ class SkroutzApi::PaginatedCollection < Array
     !first?
   end
 
-  def is_at_last?
+  def last_page?
     !last?
   end
 

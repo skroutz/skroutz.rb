@@ -70,8 +70,8 @@ describe SkroutzApi::PaginatedCollection do
     end
   end
 
-  describe '#is_at_last?' do
-    subject { paginated_collection.is_at_last? }
+  describe '#last_page?' do
+    subject { paginated_collection.last_page? }
 
     context 'when the current page is the last' do
       let(:headers) do
