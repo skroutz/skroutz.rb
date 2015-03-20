@@ -5,6 +5,59 @@ shared_examples 'an error handled request' do
 
   describe '4XX class' do
     describe '404 Not Found' do
+      let(:status) { 401 }
+
+      it 'raises Skroutz::UnauthorizedError' do
+        expect { request }.to raise_error(Skroutz::UnauthorizedError)
+      end
+    end
+
+    describe '403 Forbidden' do
+      let(:status) { 403 }
+
+      describe 'rate-limiting' do
+        context 'when the remaining hits are less than 0' do
+          let(:response) do
+            request_stub.to_return(status: status,
+                                   headers: { 'X-RateLimit-Remaining' => -1 })
+          end
+
+          it 'raises Skroutz::RateLimitingError' do
+            expect { request }.to raise_error(Skroutz::RateLimitingError)
+          end
+        end
+
+        context 'when the remaining hits are 0' do
+          let(:response) do
+            request_stub.to_return(status: status,
+                                   headers: { 'X-RateLimit-Remaining' => 0 })
+          end
+
+          it 'raises Skroutz::RateLimitingError' do
+            expect { request }.to raise_error(Skroutz::RateLimitingError)
+          end
+        end
+
+        context 'when not exceeded' do
+          let(:response) do
+            request_stub.to_return(status: status,
+                                   headers: { 'X-RateLimit-Remaining' => 1 })
+          end
+
+          it 'raises Skroutz::ClientError' do
+            expect { request }.to raise_error(Skroutz::ClientError)
+          end
+        end
+
+        context 'when the rate-limiting headers are missing' do
+          it 'does not raise' do
+            expect { request }.to raise_error(Skroutz::ClientError)
+          end
+        end
+      end
+    end
+
+    describe '404 Not Found' do
       let(:status) { 404 }
 
       it 'raises Skroutz::ResourceNotFound' do
