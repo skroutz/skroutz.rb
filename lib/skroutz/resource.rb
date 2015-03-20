@@ -18,7 +18,7 @@ class Skroutz::Resource
 
   def inspect
     if attributes.present?
-      inspection = attributes.map { |k, v| "#{k}: #{v}" }.join(', ')
+      inspection = attributes.map { |k, v| "#{k}: #{attribute_for_inspect(v)}" }.join(', ')
     else
       inspection = 'not initialized'
     end
@@ -53,6 +53,22 @@ class Skroutz::Resource
       return attributes[method_name]
     else
       super
+    end
+  end
+
+  private
+
+  # Taken from ActiveRecord::AttributeMethods#attribute_for_inspect
+  def attribute_for_inspect(value)
+    if value.is_a?(String) && value.length > 50
+      "#{value[0, 50]}...".inspect
+    elsif value.is_a?(Date) || value.is_a?(Time)
+      %("#{value.to_s(:db)}")
+    elsif value.is_a?(Array) && value.size > 10
+      inspected = value.first(10).inspect
+      %(#{inspected[0...-1]}, ...])
+    else
+      value.inspect
     end
   end
 end
