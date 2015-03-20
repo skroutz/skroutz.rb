@@ -47,7 +47,7 @@ class Skroutz::Resource
       when '='
         attributes[$`] = arguments.first
       when '?'
-        attributes[$`]
+        !!attributes[$`]
       end
     elsif attributes.include?(method_name)
       return attributes[method_name]
