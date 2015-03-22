@@ -10,6 +10,7 @@ group :development do
   gem 'pry-doc'
 
   gem 'guard-rubocop', require: false
+  gem 'rubocop', '~> 0.29.0'
 end
 
 group :test do
