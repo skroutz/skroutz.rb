@@ -9,7 +9,7 @@ class SkroutzApi::Resource
   end
 
   def resource
-    @resource_prefix ||= self.class.to_s.demodulize.downcase
+    @resource ||= self.class.to_s.demodulize.downcase
   end
 
   def resource_prefix
