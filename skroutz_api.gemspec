@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["zorbash@skroutz.gr"]
   spec.summary       = %q{Skroutz API client}
   spec.description   = %q{Ruby API client for Skroutz}
-  spec.homepage      = "https://github.com/skroutz/skroutz_api.rb"
+  spec.homepage      = "https://github.com/skroutz/skroutz.rb"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
