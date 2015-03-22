@@ -8,4 +8,11 @@ group :development do
   gem 'pry-debugger', platforms: :mri_19
   gem 'pry-byebug', platforms: :mri_21
   gem 'pry-doc'
+
+  gem 'guard-rubocop', require: false
+end
+
+group :test do
+  gem 'guard-rspec', require: false
+  gem 'webmock', '>= 1.9'
 end
