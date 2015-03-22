@@ -7,6 +7,7 @@ class SkroutzApi::Default
   TOKEN_ENDPOINT              = '/oauth2/token'
   PAGINATION_PAGE_SIZE        = 25
   APPLICATION_PERMISSIONS     = %w[public]
+  REQUEST_TIMEOUT             = 5 # seconds
 
   class << self
     def to_hash
