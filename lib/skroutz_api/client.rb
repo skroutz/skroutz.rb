@@ -1,4 +1,6 @@
 class SkroutzApi::Client
+  include SkroutzApi::Parsing
+
   attr_accessor :client_id, :client_secret, :config
 
   delegate(*Faraday::Connection::METHODS, to: :conn)
@@ -44,10 +46,15 @@ class SkroutzApi::Client
   end
 
   def search(q, options = {})
-    response = client.get 'search', q: q
-    return SkroutzApi::PaginatedCollection.new(self, response) unless block_given?
+    response = get 'search', { q: q }.merge(options)
+
+    return parse(response) unless block_given?
 
     yield response
+  end
+
+  def client
+    self
   end
 
   private
