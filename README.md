@@ -1,4 +1,4 @@
-# skroutz-api.rb
+# skroutz.rb
 
 [![Build Status](https://travis-ci.org/skroutz/skroutz.rb.svg?branch=master)](https://travis-ci.org/skroutz/skroutz.rb)
 [![Code Climate](https://codeclimate.com/github/skroutz/skroutz.rb/badges/gpa.svg)](https://codeclimate.com/github/skroutz/skroutz.rb)
@@ -9,8 +9,6 @@ Ruby API client for Skroutz / Alve / Scrooge
 ## Install
 
 ```bash
-gem sources -a https://rubygems.skroutz.gr/
-
 gem install skroutz_api
 ```
 
