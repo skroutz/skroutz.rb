@@ -49,8 +49,9 @@ class SkroutzApi::Resource
       when '?'
         attributes[$`]
       end
+    elsif attributes.include?(method_name)
+      return attributes[method_name]
     else
-      return attributes[method_name] if attributes.include?(method_name)
       super
     end
   end
