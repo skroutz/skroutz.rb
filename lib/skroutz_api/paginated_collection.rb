@@ -5,10 +5,11 @@ class SkroutzApi::PaginatedCollection < Array
 
   attr_reader :response, :context
 
-  def initialize(context, response)
+  def initialize(context, response, collection)
     @context = context
     @response = response
-    super(parse_array(response, context.resource_prefix))
+
+    super(collection)
   end
 
   def is_at_first?
@@ -32,7 +33,7 @@ class SkroutzApi::PaginatedCollection < Array
 
       response = context.client.get(target_uri)
 
-      return SkroutzApi::PaginatedCollection.new(context, response) unless block_given?
+      return parse(response) unless block_given?
 
       yield response
     end

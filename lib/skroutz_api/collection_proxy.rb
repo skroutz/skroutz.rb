@@ -12,7 +12,7 @@ class SkroutzApi::CollectionProxy
   def find(id, options = {})
     response = client.get("#{base_path}/#{id}")
 
-    return parse_body(response) unless block_given?
+    return parse(response) unless block_given?
 
     yield response
   end
@@ -21,7 +21,7 @@ class SkroutzApi::CollectionProxy
     per = options[:per] || client.config[:pagination_page_size]
     response = client.get(base_path, page: pagenum, per: per)
 
-    return SkroutzApi::PaginatedCollection.new(self, response) unless block_given?
+    return parse(response) unless block_given?
 
     yield response
   end
@@ -29,15 +29,7 @@ class SkroutzApi::CollectionProxy
   def all(options = {})
     response = client.get(base_path)
 
-    return SkroutzApi::PaginatedCollection.new(self, response) unless block_given?
-
-    yield response
-  end
-
-  def mget(ids)
-    response = client.get("internal/#{base_path}/mget", ids: [*ids])
-
-    return SkroutzApi::PaginatedCollection.new(self, response) unless block_given?
+    return parse(response) unless block_given?
 
     yield response
   end
