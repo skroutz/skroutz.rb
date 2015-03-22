@@ -23,6 +23,10 @@ module SkroutzApi::Parsing
     end
   end
 
+  def parse_meta(response)
+    HashWithIndifferentAccess.new(JSON.parse(response.body)['meta'])
+  end
+
   def link_header(response)
     response.headers.fetch('link', '').split(',').reduce({}) do |h, link|
       page, type = link.scan(/\<(.*)\>; rel="(.*)"/).flatten
