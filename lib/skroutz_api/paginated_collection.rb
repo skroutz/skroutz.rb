@@ -12,11 +12,11 @@ class SkroutzApi::PaginatedCollection < Array
     super(collection)
   end
 
-  def is_at_first?
+  def first_page?
     !first?
   end
 
-  def is_at_last?
+  def last_page?
     !last?
   end
 
@@ -25,13 +25,13 @@ class SkroutzApi::PaginatedCollection < Array
       link_header(response).key? meth.to_sym
     end
 
-    define_method "#{meth}_page" do
-      return [] if !self.send("#{meth}?")
-      target_query = URI.parse(link_header(response)[meth.to_sym]).query
-      target_uri = URI.parse(context.resource_prefix)
-      target_uri.query = target_query
+    define_method "#{meth}_page" do |options = {}|
+      return if !self.send("#{meth}?")
 
-      response = context.client.get(target_uri)
+      target_uri = link_header(self.response)[meth.to_sym]
+      gateway = context.respond_to?(:get) ? context : context.client
+
+      response = gateway.get(target_uri, options)
 
       return parse(response) unless block_given?
 
