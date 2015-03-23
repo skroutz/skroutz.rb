@@ -7,10 +7,6 @@ Dir['./spec/support/**/*.rb'].sort.each(&method(:require))
 WebMock.disable_net_connect!
 
 RSpec.configure do |config|
-  # Formatting
-  config.formatter = :documentation
-  config.color = true
-
   # Filtering
   config.filter_run :focus
   config.run_all_when_everything_filtered = true
