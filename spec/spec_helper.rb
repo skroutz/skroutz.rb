@@ -1,4 +1,4 @@
-require 'skroutz_api'
+require 'skroutz'
 
 require 'webmock/rspec'
 
@@ -53,7 +53,7 @@ end
 end
 
 def stub_api_call(verb, path)
-  stub_request(verb, "#{SkroutzApi::Default.to_hash[:api_endpoint]}/#{path}")
+  stub_request(verb, "#{Skroutz::Default.to_hash[:api_endpoint]}/#{path}")
 end
 
 def fixture_path

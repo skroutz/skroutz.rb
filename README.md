@@ -9,7 +9,7 @@ Ruby API client for Skroutz / Alve / Scrooge
 ## Install
 
 ```bash
-gem install skroutz_api
+gem install skroutz
 ```
 
 ## Resources
@@ -51,11 +51,11 @@ Not implemented yet
 ### Categories
 
 ```ruby
-  skroutz = SkroutzApi::Client.new(client_id, client_secret)
+  skroutz = Skroutz::Client.new(client_id, client_secret)
 
   mobile_phones = skroutz.categories.find 40
 
-  #<SkroutzApi::Category id: 40, name: Κινητά Τηλέφωνα, children_count: 0,
+  #<Skroutz::Category id: 40, name: Κινητά Τηλέφωνα, children_count: 0,
     image_url: http://a.scdn.gr/images/categories/large/40.jpg, parent_id: 86,
     fashion: false, path: 76,1269,2,86,40, show_specifications: true,
     manufacturer_title: Κατασκευαστές>
@@ -64,11 +64,11 @@ Not implemented yet
 ### SKUs
 
 ```ruby
-  skroutz = SkroutzApi::Client.new(client_id, client_secret)
+  skroutz = Skroutz::Client.new(client_id, client_secret)
 
   iphone = skroutz.sku.find 390486
 
-  #<SkroutzApi::Sku id: 390486, ean: , pn: iPhone 4S 16GB, name: iPhone 4S
+  #<Skroutz::Sku id: 390486, ean: , pn: iPhone 4S 16GB, name: iPhone 4S
     (16GB), display_name: Apple iPhone 4S (16GB), category_id: 40,
     first_product_shop_info: 1521|Kaizer Shop|kaizershop, click_url: ,
     price_max: 310.0, price_min: 310.0, reviewscore: 4.43284, shop_count: 1,
@@ -87,11 +87,11 @@ Not implemented yet
 ### Products
 
 ```ruby
-  skroutz = SkroutzApi::Client.new(client_id, client_secret)
+  skroutz = Skroutz::Client.new(client_id, client_secret)
 
   iphone_product = skroutz.products.find 12661155
 
-  #<SkroutzApi::Product id: 12661155, name: APPLE IPHONE 4S 16GB white EU, sku_id: 390486,
+  #<Skroutz::Product id: 12661155, name: APPLE IPHONE 4S 16GB white EU, sku_id: 390486,
     shop_id: 2032, category_id: 40, availability: Σε απόθεμα,
     click_url: https://www.skroutz.gr/products/show/12661155?client_id=a49yR0rl6TrVjBmJ8DF3sg%3D%3D&from=api,
     shop_uid: 312, price: 364.49>
