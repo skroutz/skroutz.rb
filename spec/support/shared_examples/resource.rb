@@ -105,8 +105,8 @@ shared_examples 'a resource' do |options|
     end
 
     describe 'returned collection' do
-      it 'is a SkroutzApi::PaginatedCollection' do
-        is_expected.to be_a SkroutzApi::PaginatedCollection
+      it 'is a Skroutz::PaginatedCollection' do
+        is_expected.to be_a Skroutz::PaginatedCollection
       end
 
       it 'contains instances of the proper class' do
