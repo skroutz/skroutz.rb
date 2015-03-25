@@ -26,6 +26,4 @@ module Skroutz
     autoload "#{resource_collection.classify}".to_sym,
              "skroutz/#{resource_collection.underscore}"
   end
-
-  autoload :Search, 'skroutz/search'
 end
