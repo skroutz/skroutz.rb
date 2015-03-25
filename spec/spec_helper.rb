@@ -1,10 +1,20 @@
 require 'skroutz'
 
 require 'webmock/rspec'
+require 'simplecov'
+require 'coveralls'
 
 Dir['./spec/support/**/*.rb'].sort.each(&method(:require))
 
-WebMock.disable_net_connect!
+WebMock.disable_net_connect!(allow: 'coveralls.io')
+
+Coveralls.wear!
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter]
+
+SimpleCov.start
 
 RSpec.configure do |config|
   # Filtering
