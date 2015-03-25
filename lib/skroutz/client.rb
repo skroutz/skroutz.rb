@@ -40,8 +40,8 @@ class Skroutz::Client
   end
 
   Skroutz::RESOURCES.each do |resource|
-    define_method resource.pluralize do
-      "Skroutz::#{resource.classify.pluralize}Collection".constantize.new self
+    define_method resource.pluralize do |id = nil|
+      "Skroutz::#{resource.classify.pluralize}Collection".constantize.new id, self
     end
   end
 
