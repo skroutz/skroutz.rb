@@ -4,7 +4,7 @@ class Skroutz::CollectionProxy
 
   attr_accessor :id, :client, :owner
 
-  def initialize(id, client, owner = nil)
+  def initialize(id, client, owner = nil, options = {})
     if self.class == Skroutz::CollectionProxy
       raise RuntimeError.new('Attempted to initialize an abstract class')
     end
@@ -12,6 +12,7 @@ class Skroutz::CollectionProxy
     @id = id
     @client = client
     @owner = owner
+    @prefix = options[:prefix]
   end
 
   def find(id, options = {})
@@ -44,7 +45,7 @@ class Skroutz::CollectionProxy
   end
 
   def resource_prefix
-    @resource_prefix ||= resource.pluralize
+    @resource_prefix ||= @prefix || resource.pluralize
   end
 
   def model_name

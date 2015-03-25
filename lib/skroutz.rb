@@ -16,6 +16,7 @@ module Skroutz
   autoload :Default, 'skroutz/default'
   autoload :Parsing, 'skroutz/parsing'
   autoload :Resource, 'skroutz/resource'
+  autoload :Associations, 'skroutz/associations'
   autoload :UrlHelpers, 'skroutz/url_helpers'
   autoload :CollectionProxy, 'skroutz/collection_proxy'
   autoload :PaginatedCollection, 'skroutz/paginated_collection'
