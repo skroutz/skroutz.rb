@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/skroutz/skroutz.rb.svg?branch=master)](https://travis-ci.org/skroutz/skroutz.rb)
 [![Code Climate](https://codeclimate.com/github/skroutz/skroutz.rb/badges/gpa.svg)](https://codeclimate.com/github/skroutz/skroutz.rb)
+[![Coverage Status](https://coveralls.io/repos/skroutz/skroutz.rb/badge.svg)](https://coveralls.io/r/skroutz/skroutz.rb)
 [![Documentation Status](http://inch-ci.org/github/skroutz/skroutz.rb.svg?branch=master)](http://inch-ci.org/github/skroutz/skroutz.rb)
 
 Ruby API client for Skroutz / Alve / Scrooge
