@@ -15,5 +15,6 @@ end
 
 group :test do
   gem 'guard-rspec', require: false
+  gem 'coveralls', require: false
   gem 'webmock', '>= 1.9'
 end
