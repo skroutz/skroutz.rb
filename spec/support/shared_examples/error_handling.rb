@@ -4,6 +4,14 @@ shared_examples 'an error handled request' do
   before { response }
 
   describe '4XX class' do
+    describe '400 Bad Request' do
+      let(:status) { 400 }
+
+      it 'raises Skroutz::ClientError' do
+        expect { request }.to raise_error(Skroutz::ClientError)
+      end
+    end
+
     describe '404 Not Found' do
       let(:status) { 401 }
 

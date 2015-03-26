@@ -51,6 +51,8 @@ module Skroutz
   class ErrorHandler < Faraday::Response::Middleware
     def on_complete(env)
       case env[:status]
+      when 400
+        raise Skroutz::ClientError.new(env.status, env.body)
       when 401
         raise Skroutz::UnauthorizedError.new(env.status, env.body)
       when 403
