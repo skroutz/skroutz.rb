@@ -12,7 +12,7 @@ class Skroutz::Client
   end
 
   def token
-    @token ||= application_token
+    @token ||= user_token || application_token
   end
 
   def conn

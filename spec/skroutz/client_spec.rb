@@ -123,11 +123,24 @@ describe Skroutz::Client do
   end
 
   describe '#token' do
-    before { expect(client).to receive(:application_token) }
     subject { client.token }
 
-    it 'acquires an application token' do
-      subject
+    context 'when user_token is not present' do
+      before { expect(client).to receive(:application_token) }
+
+      it 'acquires an application token' do
+        subject
+      end
+    end
+
+    context 'when user_token is present' do
+      let(:user_token) { 'token' }
+
+      before { allow(client).to receive(:user_token).and_return(user_token) }
+
+      it 'returns the user_token' do
+        is_expected.to eql(user_token)
+      end
     end
   end
 end
