@@ -1,7 +1,7 @@
 class Skroutz::Client
   include Skroutz::Parsing
 
-  attr_accessor :client_id, :client_secret, :config
+  attr_accessor :client_id, :client_secret, :config, :user_token
 
   delegate(*Faraday::Connection::METHODS, to: :conn)
 
@@ -33,10 +33,6 @@ class Skroutz::Client
       client_credentials.
       get_token(scope: config[:application_permissions].join(' ')).
       token
-  end
-
-  def user_token
-    raise NotImplementedError
   end
 
   Skroutz::RESOURCES.each do |resource|

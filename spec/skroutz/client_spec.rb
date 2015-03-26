@@ -71,6 +71,27 @@ describe Skroutz::Client do
     end
   end
 
+  describe '#user_token' do
+    let(:user_token) { 'token' }
+    subject { client.user_token }
+
+    before { client.user_token = user_token }
+
+    it 'returns the value passed at initialization' do
+      is_expected.to eq(user_token)
+    end
+  end
+
+  describe '#user_token=' do
+    let(:new_user_token) { 'new user token' }
+
+    it 'sets the @user_token' do
+      expect {
+        client.user_token = new_user_token
+      }.to change { client.user_token }.from(nil).to(new_user_token)
+    end
+  end
+
   describe '#conn' do
     before { allow(client).to receive(:application_token).and_return('token') }
 
