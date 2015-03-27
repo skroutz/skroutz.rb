@@ -49,7 +49,7 @@ module Skroutz::Parsing
   end
 
   def infer_collection(json)
-    "Skroutz::#{collection_resource_key(json).capitalize}".safe_constantize
+    "Skroutz::#{collection_resource_key(json).classify}".safe_constantize
   end
 
   def collection?(json)

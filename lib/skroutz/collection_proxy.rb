@@ -36,7 +36,7 @@ class Skroutz::CollectionProxy
   end
 
   def resource
-    @resource ||= self.class.to_s.demodulize.chomp('Collection').downcase.singularize
+    @resource ||= self.class.to_s.demodulize.chomp('Collection').tableize.singularize
   end
 
   def resource_prefix
