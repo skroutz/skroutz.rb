@@ -36,7 +36,7 @@ shared_examples 'a resource' do |options|
       let(:request) { subject }
       let(:request_stub) { stub_get("#{resource.base_path}/#{resource_id}") }
     end
-  end if !options || options[:only].include?(:find)
+  end if !options || [*options[:only]].include?(:find)
 
   describe '#page' do
     let(:per) { 10 }
@@ -82,7 +82,7 @@ shared_examples 'a resource' do |options|
         stub_get(resource.base_path).with(query: { page: pagenum, per: per })
       end
     end
-  end if !options || options[:only].include?(:page)
+  end if !options || [*options[:only]].include?(:page)
 
   describe '#all' do
     let(:opts) { {} }
@@ -121,5 +121,5 @@ shared_examples 'a resource' do |options|
       let(:request) { subject }
       let(:request_stub) { stub_get(resource.base_path) }
     end
-  end if !options || options[:only].include?(:all)
+  end if !options || [*options[:only]].include?(:all)
 end

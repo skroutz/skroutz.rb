@@ -5,7 +5,7 @@ describe 'skus' do
 
   subject(:skus) { client.skus }
 
-  it_behaves_like 'a resource', only: [:find] do
+  it_behaves_like 'a resource', only: :find do
     let(:resource) { skus }
   end
 end
