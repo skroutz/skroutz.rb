@@ -17,6 +17,9 @@ Style/ClassAndModuleChildren:
 Style/Encoding:
   EnforcedStyle: when_needed
 
+Style/SingleLineBlockParams:
+  Enabled: false
+
 Style/DotPosition:
   EnforcedStyle: trailing
 
@@ -38,4 +41,10 @@ Style/EachWithObject:
   Enabled: false
 
 Style/SignalException:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/PerlBackrefs:
   Enabled: false

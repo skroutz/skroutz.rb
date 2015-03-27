@@ -103,7 +103,7 @@ describe Skroutz::PaginatedCollection do
 
   describe '#first_page' do
     let(:target_page_uri) { 'https://api.skroutz.gr/categories?page=41per=5' }
-    let(:body) { { categories: [] }}
+    let(:body) { { categories: [] } }
     let(:headers) do
       {
         'link' => "<#{target_page_uri}>; rel=\"first\","\
@@ -146,7 +146,7 @@ describe Skroutz::PaginatedCollection do
 
   describe '#last_page' do
     let(:target_page_uri) { 'https://api.skroutz.gr/categories?page=42per=5' }
-    let(:body) { { categories: [] }}
+    let(:body) { { categories: [] } }
     let(:headers) do
       {
         'link' => "<#{target_page_uri}>; rel=\"last\","\
@@ -189,7 +189,7 @@ describe Skroutz::PaginatedCollection do
 
   describe '#next_page' do
     let(:target_page_uri) { 'https://api.skroutz.gr/categories?page=3per=5' }
-    let(:body) { { categories: [] }}
+    let(:body) { { categories: [] } }
     let(:headers) do
       {
         'link' => "<#{target_page_uri}>; rel=\"next\","\
@@ -230,7 +230,7 @@ describe Skroutz::PaginatedCollection do
 
   describe '#previous_page' do
     let(:target_page_uri) { 'https://api.skroutz.gr/categories?page=2per=5' }
-    let(:body) { { categories: [] }}
+    let(:body) { { categories: [] } }
     let(:headers) do
       {
         'link' => "<#{target_page_uri}>; rel=\"previous\","\

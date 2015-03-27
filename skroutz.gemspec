@@ -8,14 +8,14 @@ Gem::Specification.new do |spec|
   spec.version       = Skroutz::VERSION
   spec.authors       = ['Dimitris Zorbas']
   spec.email         = ['zorbash@skroutz.gr']
-  spec.summary       = %q{Skroutz API client}
-  spec.description   = %q{Ruby API client for Skroutz}
+  spec.summary       = 'Skroutz API client'
+  spec.description   = 'Ruby API client for Skroutz'
   spec.homepage      = 'https://github.com/skroutz/skroutz.rb'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(spec|features)/)
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.6'

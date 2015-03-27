@@ -1,10 +1,11 @@
 shared_examples 'a resource' do |options|
   describe '#find' do
     let(:resource_id) { 42 }
+    let(:opts) { {} }
     let(:request_stub) do
       stub_with_fixture(:get,
                         "#{resource.base_path}/#{resource_id}",
-                        "#{resource.base_path}_show")
+                        "#{resource.base_path}_show", opts)
     end
 
     subject { resource.find(resource_id) }
@@ -19,7 +20,8 @@ shared_examples 'a resource' do |options|
 
     it 'targets the correct path' do
       expect(resource.client).
-        to receive(:get).with("#{resource.base_path}/#{resource_id}").and_call_original
+        to receive(:get).with("#{resource.base_path}/#{resource_id}", opts).
+        and_call_original
 
       subject
     end
@@ -83,10 +85,11 @@ shared_examples 'a resource' do |options|
   end if !options || options[:only].include?(:page)
 
   describe '#all' do
+    let(:opts) { {} }
     subject { resource.all }
 
     let(:request_stub) do
-      stub_with_fixture(:get, resource.base_path, "#{resource.base_path}_index")
+      stub_with_fixture(:get, resource.base_path, "#{resource.base_path}_index", opts)
     end
 
     before { request_stub }
@@ -99,7 +102,7 @@ shared_examples 'a resource' do |options|
 
     it 'targets the correct path' do
       expect(resource.client).
-        to receive(:get).with(resource.base_path).and_call_original
+        to receive(:get).with(resource.base_path, opts).and_call_original
 
       subject
     end

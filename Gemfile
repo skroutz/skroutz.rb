@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  gem 'awesome_print', :require => 'ap'
+  gem 'awesome_print', require: 'ap'
   gem 'pry-debugger', platforms: :mri_19
   gem 'pry-byebug', platforms: :mri_21
   gem 'pry-doc'
