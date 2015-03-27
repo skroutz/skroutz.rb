@@ -53,13 +53,14 @@ RSpec.configure do |config|
 end
 
 [:get, :head, :patch, :post, :put, :delete].each do |verb|
-  Object.send :define_method, "stub_#{verb}" do |path|
-    stub_api_call(verb, path)
+  Object.send :define_method, "stub_#{verb}" do |path, params = {}|
+    stub_api_call(verb, path, params)
   end
 end
 
-def stub_api_call(verb, path)
-  stub_request(verb, "#{Skroutz::Default.to_hash[:api_endpoint]}/#{path}")
+def stub_api_call(verb, path, params = {})
+  stub_request(verb, "#{Skroutz::Default.to_hash[:api_endpoint]}/#{path}").
+    with(query: params)
 end
 
 def fixture_path
