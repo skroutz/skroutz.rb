@@ -73,7 +73,7 @@ def fixture(key)
   end
 end
 
-def stub_with_fixture(verb, path, key)
-  send("stub_#{verb}", path).to_return(headers: fixture(key)[:headers],
-                                       body: fixture(key)[:body])
+def stub_with_fixture(verb, path, key, params = {})
+  send("stub_#{verb}", path, params).to_return(headers: fixture(key)[:headers],
+                                               body: fixture(key)[:body])
 end

@@ -16,16 +16,7 @@ class Skroutz::Client
   end
 
   def conn
-    @conn ||= Faraday.new(config[:api_endpoint]) do |c|
-      c.use ::FaradayMiddleware::FollowRedirects, limit: 5
-      c.use ::Skroutz::ErrorHandler
-      c.use Skroutz::TimeoutHandler
-      c.use Faraday::Response::Logger, @config[:logger] if @config[:logger]
-
-      c.adapter @config[:adapter] || Faraday.default_adapter
-      c.headers = default_headers
-      c.options.timeout = @config[:timeout]
-    end
+    @conn ||= Faraday.new(config[:api_endpoint]) { |client| configure_client(client) }
   end
 
   def application_token
@@ -64,13 +55,25 @@ class Skroutz::Client
   private
 
   def oauth_client
-    @oauth_client ||= ::OAuth2::Client.
-      new(client_id,
-          client_secret,
-          site: config[:oauth_endpoint],
-          authorize_url: config[:authorization_code_endpoint],
-          token_url: config[:token_endpoint],
-          user_agent: config[:user_agent])
+    @oauth_client ||= begin
+      ::OAuth2::Client.new(client_id,
+                           client_secret,
+                           site: config[:oauth_endpoint],
+                           authorize_url: config[:authorization_code_endpoint],
+                           token_url: config[:token_endpoint],
+                           user_agent: config[:user_agent])
+    end
+  end
+
+  def configure_client(client)
+    client.use ::FaradayMiddleware::FollowRedirects, limit: 5
+    client.use ::Skroutz::ErrorHandler
+    client.use Skroutz::TimeoutHandler
+    client.use Faraday::Response::Logger, @config[:logger] if @config[:logger]
+
+    client.adapter @config[:adapter] || Faraday.default_adapter
+    client.headers = default_headers
+    client.options.timeout = @config[:timeout]
   end
 
   def default_headers

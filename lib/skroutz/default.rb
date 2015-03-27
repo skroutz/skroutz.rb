@@ -11,7 +11,10 @@ class Skroutz::Default
 
   class << self
     def to_hash
-      constants.reduce({}) { |h, const| h[const.downcase] = const_get const; h }
+      constants.reduce({}) do |h, const|
+        h[const.downcase] = const_get(const)
+        h
+      end
     end
   end
 end

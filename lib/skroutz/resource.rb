@@ -39,7 +39,7 @@ class Skroutz::Resource
     end
   end
 
-  def method_missing(method_symbol, *arguments)
+  def method_missing(method_symbol, *arguments) # rubocop: disable all
     method_name = method_symbol.to_s
 
     if method_name =~ /(=|\?)$/
@@ -59,7 +59,7 @@ class Skroutz::Resource
   private
 
   # Taken from ActiveRecord::AttributeMethods#attribute_for_inspect
-  def attribute_for_inspect(value)
+  def attribute_for_inspect(value) # rubocop: disable all
     if value.is_a?(String) && value.length > 50
       "#{value[0, 50]}...".inspect
     elsif value.is_a?(Date) || value.is_a?(Time)

@@ -49,7 +49,7 @@ class Skroutz::CollectionProxy
 
   private
 
-  def method_missing(method, *args, &block)
+  def method_missing(method, *args) # rubocop:disable Metrics/CyclomaticComplexity
     options = args.first || {}
     url_prefix = options.delete(:url_prefix) || ''
     verb = options.delete(:verb) || options.delete(:via) || :get

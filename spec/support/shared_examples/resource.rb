@@ -20,6 +20,8 @@ shared_examples 'a resource' do |options|
     it 'targets the correct path' do
       expect(resource.client).
         to receive(:get).with("#{resource.base_path}/#{resource_id}").and_call_original
+        to receive(:get).with("#{resource.base_path}/#{resource_id}", opts).
+        and_call_original
 
       subject
     end
