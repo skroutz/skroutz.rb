@@ -9,7 +9,8 @@ require 'skroutz/inflections'
 
 module Skroutz
   RESOURCES = %w[category sku product shop manufacturer filter_group autocomplete
-                 location address specification review favorite notification]
+                 location address specification review favorite_list favorite
+                 notification]
 
   autoload :Client, 'skroutz/client'
   autoload :Default, 'skroutz/default'
