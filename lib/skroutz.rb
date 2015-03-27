@@ -20,9 +20,9 @@ module Skroutz
   autoload :PaginatedCollection, 'skroutz/paginated_collection'
 
   RESOURCES.each do |resource|
-    autoload resource.capitalize.to_sym, "skroutz/#{resource}"
+    autoload resource.classify.to_sym, "skroutz/#{resource}"
 
-    resource_collection = "#{resource.pluralize}Collection"
+    resource_collection = "#{resource.pluralize}_collection"
     autoload "#{resource_collection.classify}".to_sym,
              "skroutz/#{resource_collection.underscore}"
   end
