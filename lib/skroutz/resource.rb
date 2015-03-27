@@ -28,7 +28,7 @@ class Skroutz::Resource
 
   protected
 
-  def respond_to?(method, include_priv = false)
+  def respond_to_missing?(method, include_priv = false)
     method_name = method.to_s
     if attributes.nil?
       super
