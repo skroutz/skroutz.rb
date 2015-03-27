@@ -11,7 +11,7 @@ class Skroutz::CollectionProxy
   end
 
   def find(id, options = {})
-    response = client.get("#{base_path}/#{id}")
+    response = client.get("#{base_path}/#{id}", options)
 
     return parse(response) unless block_given?
 
@@ -20,7 +20,7 @@ class Skroutz::CollectionProxy
 
   def page(pagenum = 1, options = {})
     per = options[:per] || client.config[:pagination_page_size]
-    response = client.get(base_path, page: pagenum, per: per)
+    response = client.get(base_path, { page: pagenum, per: per }.merge(options))
 
     return parse(response) unless block_given?
 
@@ -28,7 +28,7 @@ class Skroutz::CollectionProxy
   end
 
   def all(options = {})
-    response = client.get(base_path)
+    response = client.get(base_path, options)
 
     return parse(response) unless block_given?
 
