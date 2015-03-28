@@ -5,6 +5,10 @@ class Skroutz::CollectionProxy
   attr_accessor :id, :client, :owner
 
   def initialize(id, client, owner = nil)
+    if self.class == Skroutz::CollectionProxy
+      raise RuntimeError.new('Attempted to initialize an abstract class')
+    end
+
     @id = id
     @client = client
     @owner = owner
