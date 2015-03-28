@@ -154,6 +154,52 @@ For paginated responses, the following methods will be available:
 * next
 * previous
 
+## Associations
+
+For every `Skroutz::Resource` the available associations can be inspected with:
+
+```ruby
+  skroutz = Skroutz::Client.new('client_id', 'client_secret')
+
+  iphone = skroutz.skus.find 390486
+  iphone.class.associations
+  # => [:category, :similar, :products, :reviews, :specifications, :manufacturer]
+```
+
+You may call any of the assocations listed you may them as methods like:
+
+```ruby
+  iphone = skroutz.skus.find 390486
+
+  # entity
+  iphone.category
+  # => #<Skroutz::Category id: 40, name: "Κινητά Τηλέφωνα", children_count: 0, image_url: "http://a.scdn.gr/images/categories/large/40.jpg", parent_id: 86, fashion: false, path: "76,1269,2,86,40", show_specifications: true, manufacturer_title: "Κατασκευαστές">
+
+  # collection
+  iphone.products.all
+  # => [#<Skroutz::Product id: 18733068, name: "Nokia 220 Single Sim EU Yellow", sku_id: 5725906, shop_id: 1830, category_id: 40, availability: "Σε απόθεμα", click_url: "https://www.skroutz.gr/products/show/18733068?clie...", shop_uid: "1149024", price: 36.0>,
+ #<Skroutz::Product id: 18036272, name: "Nokia 220 Dual Sim Black EU", sku_id: 5725906, shop_id: 941, category_id: 40, availability: "Σε απόθεμα", click_url: "https://www.skroutz.gr/products/show/18036272?clie...", shop_uid: "d30712b4-ed33-475e-9291-f3b3fafc40c9", price: 49.89>]
+```
+
+You may even try more complex things like:
+
+```ruby 
+  skroutz.search('nexus').first.skus.all.first.products.page(1, per: 2)
+  # => [#<Skroutz::Product id: 14343307, name: "TABLET INTENSO TAB 714
+  # 5509852", sku_id: 2690329, shop_id: 514, category_id: 1105, availability: "Σε απόθεμα", 
+  # click_url: "https://www.skroutz.gr/products/show/14343307?clie...", shop_uid: "180979", price: 37.99>,
+  # #<Skroutz::Product id: 14385461, name: "Intenso - Tablet 714 7''", sku_id: 2690329, 
+  # shop_id: 1085, category_id: 1105, availability: "1 έως 3 ημέρες", 
+  # click_url: "https://www.skroutz.gr/products/show/14385461?clie...", shop_uid: # "3210", price: 66.9>]
+
+  client.categories(40).skus(q: 'iphone').first.reviews.all
+  # => [#<Skroutz::Review id: 49553, user_id: 305635, review: "Αν μπορουσα θα του εβαζα 2.5 αντι για τρια. Αν και...", 
+  # rating: 3, created_at: "2015-03-16T22:05:56+02:00", demoted: false>, 
+  # #<Skroutz::Review id: 49477, user_id: 187662, review: "To κινητο δεν βρισκεται παρα πολυ καιρο στην κατοχ...", 
+  # rating: 5, created_at: "2015-03-15T16:38:38+02:00", demoted: false>,
+  # ...]
+```
+
 ## Configuration
 
 The following configuration options are available upon client initialization:
