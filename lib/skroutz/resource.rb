@@ -1,5 +1,5 @@
 class Skroutz::Resource
-  include Skroutz::Parsing
+  include Skroutz::Associations
 
   attr_accessor :attributes, :client
 
