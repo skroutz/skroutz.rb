@@ -32,6 +32,18 @@ shared_examples 'a resource' do |options|
       end
     end
 
+    context 'when called with a block' do
+      let(:response) { double(:response) }
+
+      before { allow(client).to receive(:get).and_return(response) }
+
+      it 'yields the raw response' do
+        expect(resource).to receive(:find).and_yield(response)
+
+        resource.find(resource_id) { |_| }
+      end
+    end
+
     it_behaves_like 'an error handled request' do
       let(:request) { subject }
       let(:request_stub) { stub_get("#{resource.base_path}/#{resource_id}") }
@@ -76,6 +88,18 @@ shared_examples 'a resource' do |options|
     it 'sets the per query parameter' do
     end
 
+    context 'when called with a block' do
+      let(:response) { double(:response) }
+
+      before { allow(client).to receive(:get).and_return(response) }
+
+      it 'yields the raw response' do
+        expect(resource).to receive(:page).and_yield(response)
+
+        resource.page(pagenum) { |_| }
+      end
+    end
+
     it_behaves_like 'an error handled request' do
       let(:request) { subject }
       let(:request_stub) do
@@ -114,6 +138,18 @@ shared_examples 'a resource' do |options|
 
       it 'contains instances of the proper class' do
         is_expected.to all(be_an(resource.model_name))
+      end
+    end
+
+    context 'when called with a block' do
+      let(:response) { double(:response) }
+
+      before { allow(client).to receive(:get).and_return(response) }
+
+      it 'yields the raw response' do
+        expect(resource).to receive(:all).and_yield(response)
+
+        resource.all { |_| }
       end
     end
 
