@@ -295,6 +295,12 @@ Fix any rubocop offences:
 bundle exec rubocop
 ```
 
+### OAuth2.0 Credentials
+
+In order for the client to make requests against our API,
+a valid set of OAuth2.0 provided by us has to be used.
+To get yours send an email at [api@skroutz.gr](mailto: api@skroutz.gr).
+
 # LICENSE
 
 Copyright (c) 2015 Skroutz S.A, MIT Licence. 
