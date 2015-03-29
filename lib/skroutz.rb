@@ -1,4 +1,3 @@
-require 'addressable/template'
 require 'oauth2'
 require 'faraday_middleware'
 require 'active_support/all'

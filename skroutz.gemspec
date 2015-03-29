@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 3.2'
 
-  spec.add_dependency 'addressable', '>= 2.0'
   spec.add_dependency 'oauth2', '~> 1.0'
   spec.add_dependency 'faraday_middleware', '~> 0.9'
   spec.add_dependency 'activesupport'
