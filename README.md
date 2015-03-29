@@ -1,5 +1,6 @@
 # skroutz.rb
 
+[![Gem Version](https://badge.fury.io/rb/skroutz.svg)](http://badge.fury.io/rb/skroutz)
 [![Build Status](https://travis-ci.org/skroutz/skroutz.rb.svg?branch=master)](https://travis-ci.org/skroutz/skroutz.rb)
 [![Code Climate](https://codeclimate.com/github/skroutz/skroutz.rb/badges/gpa.svg)](https://codeclimate.com/github/skroutz/skroutz.rb)
 [![Coverage Status](https://coveralls.io/repos/skroutz/skroutz.rb/badge.svg)](https://coveralls.io/r/skroutz/skroutz.rb)
@@ -298,7 +299,7 @@ bundle exec rubocop
 ### OAuth2.0 Credentials
 
 In order for the client to make requests against our API,
-a valid set of OAuth2.0 provided by us has to be used.
+a valid set of OAuth2.0 credentials provided by us has to be used.
 To get yours send an email at [api@skroutz.gr](mailto: api@skroutz.gr).
 
 # LICENSE
