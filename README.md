@@ -167,7 +167,7 @@ For every `Skroutz::Resource` the available associations can be inspected with:
   # => [:category, :similar, :products, :reviews, :specifications, :manufacturer]
 ```
 
-You may call any of the assocations listed you may them as methods like:
+You may call any of the assocations listed as methods like:
 
 ```ruby
   iphone = skroutz.skus.find 390486
@@ -294,6 +294,12 @@ bundle exec guard
 Fix any rubocop offences:
 ```bash
 bundle exec rubocop
+```
+
+### Console
+
+```bash
+pry -Ilib -rskroutz
 ```
 
 ### OAuth2.0 Credentials
