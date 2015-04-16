@@ -3,6 +3,8 @@ class Skroutz::Resource
 
   attr_accessor :attributes, :client
 
+  alias :to_hash :attributes
+
   def initialize(attributes, client)
     @attributes = attributes
     @client = client

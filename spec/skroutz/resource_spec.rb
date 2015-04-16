@@ -61,6 +61,12 @@ describe Skroutz::Resource do
     end
   end
 
+  describe '#to_hash' do
+    subject { resource.method(:to_hash) }
+
+    it { is_expected.to eq(resource.method(:attributes)) }
+  end
+
   describe 'attribute methods' do
     let(:attributes) { { 'name' => 'john', 'alive' => true, 'kicking' => false } }
     let(:attribute) { :name }
