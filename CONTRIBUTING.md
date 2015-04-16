@@ -21,7 +21,7 @@ do so.
 * Read [how to properly contribute to open source projects on Github][2].
 * Fork the project.
 * Use a topic/feature branch to easily amend a pull request later, if necessary.
-* Write [good commit messages][3].
+* Comply with our [git style guide](https://github.com/agis-/git-style-guide).
 * Use the same coding conventions as the rest of the project.
 * Commit and push until you are happy with your contribution.
 * Make sure to add tests for it. This is important so I don't break it
