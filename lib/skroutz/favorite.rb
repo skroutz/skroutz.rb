@@ -1,1 +1,3 @@
-class Skroutz::Favorite < Skroutz::Resource; end
+class Skroutz::Favorite < Skroutz::Resource
+  association :sku
+end
