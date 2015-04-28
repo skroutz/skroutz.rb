@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.2] - 2015-04-28
+
+### Added
+
+* Favorite <- Sku assoiciation
+* FavoriteList <- Favorite association
+* JSON serialization capability of Skroutz::Resource
+* reload! method for code reloading in development
+
+### Fixed
+
+* Skroutz::Resource#resource handling for multiple word resources (eg.  FavoriteList)
+
 ## [0.1.1] - 2015-03-29
 
 ### Removed
