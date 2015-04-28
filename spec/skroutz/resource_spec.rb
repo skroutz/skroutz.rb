@@ -42,6 +42,28 @@ describe Skroutz::Resource do
     end
   end
 
+  describe '#resource' do
+    let(:class_name) { 'Favorite' }
+
+    before do
+      allow(resource).to receive_message_chain('class.to_s').and_return(class_name)
+    end
+
+    subject { resource.resource }
+
+    it { is_expected.to be_a(String) }
+
+    context 'when resource is a single word' do
+      it { is_expected.to eq('favorite') }
+    end
+
+    context 'when resource contains multiple words' do
+      let(:class_name) { 'FavoriteList' }
+
+      it { is_expected.to eq('favorite_list') }
+    end
+  end
+
   describe '#inspect' do
     subject { resource.inspect }
 

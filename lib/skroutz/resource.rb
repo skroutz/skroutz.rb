@@ -11,7 +11,7 @@ class Skroutz::Resource
   end
 
   def resource
-    @resource ||= self.class.to_s.demodulize.downcase
+    @resource ||= self.class.to_s.demodulize.tableize.singularize
   end
 
   def resource_prefix
