@@ -12,7 +12,7 @@ shared_examples 'an error handled request' do
       end
     end
 
-    describe '404 Not Found' do
+    describe '401 Not Found' do
       let(:status) { 401 }
 
       it 'raises Skroutz::UnauthorizedError' do
