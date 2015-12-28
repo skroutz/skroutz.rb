@@ -299,7 +299,7 @@ bundle exec rubocop
 ### Console
 
 ```bash
-pry -Ilib -rskroutz
+pry --gem
 ```
 
 ### OAuth2.0 Credentials
