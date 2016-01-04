@@ -71,6 +71,18 @@ describe Skroutz::Client do
     end
   end
 
+  describe '#token=' do
+    let(:token) { 'token' }
+
+    subject { client.token }
+
+    before { client.token = token }
+
+    it 'returns the assigned value' do
+      is_expected.to eq(token)
+    end
+  end
+
   describe '#user_token' do
     let(:user_token) { 'token' }
     subject { client.user_token }

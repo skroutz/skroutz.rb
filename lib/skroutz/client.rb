@@ -1,6 +1,7 @@
 class Skroutz::Client
   include Skroutz::Parsing
 
+  attr_writer :token
   attr_accessor :client_id, :client_secret, :config, :user_token
 
   delegate(*Faraday::Connection::METHODS, to: :conn)
