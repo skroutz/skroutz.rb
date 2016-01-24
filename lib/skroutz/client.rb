@@ -4,6 +4,7 @@ class Skroutz::Client
   attr_writer :token
   attr_accessor :client_id, :client_secret, :config, :user_token
 
+  # Respond to HTTP methods
   delegate(*Faraday::Connection::METHODS, to: :conn)
 
   def initialize(client_id, client_secret, config = {})
@@ -12,14 +13,25 @@ class Skroutz::Client
     @config = Skroutz::Default.to_hash.merge config
   end
 
+  # Returns the token used for OAuth2.0 authorization
+  #
+  # Automatically acquires an application token (client credentials)
+  # unless a user_token is provided using {#user_token=}
+  # @see http://developer.skroutz.gr/authorization/
+  # @return [String] The access_token
   def token
     @token ||= user_token || application_token
   end
 
+  # Returns a connection to directly perform requests
   def conn
     @conn ||= Faraday.new(config[:api_endpoint]) { |client| configure_client(client) }
   end
 
+  # Obtains an application token and returns it
+  # @see http://developer.skroutz.gr/authorization/flows/#application-token
+  #
+  # @return [String] The application access_token
   def application_token
     oauth_client.
       client_credentials.
@@ -28,11 +40,20 @@ class Skroutz::Client
   end
 
   Skroutz::RESOURCES.each do |resource|
+    # @example
+    # def categories
+    #   Skroutz::CategoriesCollection.new id, self
+    # end
     define_method resource.pluralize do |id = nil|
       "Skroutz::#{resource.classify.pluralize}Collection".constantize.new id, self
     end
   end
 
+  # Performs search
+  #
+  # @param [String] q The search query
+  # @param [Hash] options request options
+  # @return {Skroutz::PaginatedCollection}
   def search(q, options = {})
     response = get 'search', { q: q }.merge(options)
 
@@ -41,16 +62,23 @@ class Skroutz::Client
     yield response
   end
 
-  def client
-    self
-  end
-
+  # Performs autocomplete search
+  #
+  # @param [String] q The autocomplete search query
+  # @param [Hash] options request options
+  # @return {Skroutz::PaginatedCollection}
   def autocomplete(q, options = {})
     response = get 'autocomplete', { q: q }.merge(options)
 
     return parse(response) unless block_given?
 
     yield response
+  end
+
+  # Identity method
+  # @returns self
+  def client
+    self
   end
 
   private
