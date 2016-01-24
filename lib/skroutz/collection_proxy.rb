@@ -4,6 +4,10 @@ class Skroutz::CollectionProxy
 
   attr_accessor :id, :client, :owner
 
+  # @param [Integer] id the id of a parent resource
+  # @param [Skroutz::Client] client an instance of the client
+  # @param [Skroutz::Resource] owner a parent resource
+  # @param [Hash] options hints on how to construct the request path
   def initialize(id, client, owner = nil, options = {})
     if self.class == Skroutz::CollectionProxy
       raise RuntimeError.new('Attempted to initialize an abstract class')
@@ -15,6 +19,11 @@ class Skroutz::CollectionProxy
     @prefix = options[:prefix]
   end
 
+  # Retrieves a single resource
+  # @param [Integer] id the resource id
+  # @param [Hash] options any options to pass down to the request object
+  # @yield [Faraday::Response] the actual response
+  # @return [Skroutz::Resource] the parsed response
   def find(id, options = {})
     response = client.get("#{base_path}/#{id}", options)
 
@@ -23,6 +32,11 @@ class Skroutz::CollectionProxy
     yield response
   end
 
+  # Retrieves a specific page of a collection
+  # @param [Integer] pagenum the page to request
+  # @param [Hash] options any options to pass down to the request object
+  # @yield [Faraday::Response] the actual response
+  # @return [Skroutz::PaginatedCollection] the parsed response
   def page(pagenum = 1, options = {})
     per = options[:per] || client.config[:pagination_page_size]
     response = client.get(base_path, { page: pagenum, per: per }.merge(options))
@@ -32,6 +46,11 @@ class Skroutz::CollectionProxy
     yield response
   end
 
+  # Retrieves a collection of resources
+  # @param [Integer] pagenum the page to request
+  # @param [Hash] options any options to pass down to the request object
+  # @yield [Faraday::Response] the actual response
+  # @return [Skroutz::PaginatedCollection] the parsed response
   def all(options = {})
     response = client.get(base_path, options)
 
@@ -40,14 +59,17 @@ class Skroutz::CollectionProxy
     yield response
   end
 
+  # @return [String] The name of the proxied resource
   def resource
     @resource ||= self.class.to_s.demodulize.chomp('Collection').tableize.singularize
   end
 
+  # @return [String] The RESTful path segment of the proxied resource
   def resource_prefix
     @resource_prefix ||= @prefix || resource.pluralize
   end
 
+  # @return [Skroutz::Resource] the resource class to use for parsing
   def model_name
     @model_name ||= "Skroutz::#{resource.classify}".constantize
   end
