@@ -1,3 +1,4 @@
+# @see http://developer.skroutz.gr/api/v3/sku/
 class Skroutz::Sku < Skroutz::Resource
   association :category
   association :similar, class_name: 'Sku'
