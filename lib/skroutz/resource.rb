@@ -1,3 +1,4 @@
+# Parent class of all resources
 class Skroutz::Resource
   include Skroutz::Associations
 
@@ -5,19 +6,24 @@ class Skroutz::Resource
 
   alias :to_hash :attributes
 
+  # @param [Hash] attributes The attributes to initialize the resource with
+  # @param [Skroutz::Client] client an instance of the client
   def initialize(attributes, client)
     @attributes = attributes
     @client = client
   end
 
+  # @return [String] The name of the encapsulated resource
   def resource
     @resource ||= self.class.to_s.demodulize.tableize.singularize
   end
 
+  # @return [String] The RESTful path segment of the resource
   def resource_prefix
     @resource_prefix ||= resource.pluralize
   end
 
+  # @return [String] The attribute inspection of the instance
   def inspect
     if attributes.present?
       inspection = attributes.map { |k, v| "#{k}: #{attribute_for_inspect(v)}" }.join(', ')
@@ -41,6 +47,12 @@ class Skroutz::Resource
     end
   end
 
+  # Attribute accessors and boolean predicates
+  # @example
+  #    resource = Skroutz::Category,new(attrs, client)
+  #    resource.active = false
+  #    resource.active?
+  #    # => false
   def method_missing(method_symbol, *arguments) # rubocop: disable all
     method_name = method_symbol.to_s
 
