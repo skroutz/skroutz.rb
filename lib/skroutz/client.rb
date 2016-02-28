@@ -39,13 +39,13 @@ class Skroutz::Client
       token
   end
 
-  Skroutz::RESOURCES.each do |resource|
+  Skroutz::Resources.to_a.each do |resource|
     # @example
     # def categories
     #   Skroutz::CategoriesCollection.new id, self
     # end
     define_method resource.pluralize do |id = nil|
-      "Skroutz::#{resource.classify.pluralize}Collection".constantize.new id, self
+      "Skroutz::Resources::#{resource.classify.pluralize}Collection".constantize.new id, self
     end
   end
 

@@ -62,12 +62,12 @@ module Skroutz::Parsing
 
   # Tries to match a resource class for the singular response
   def infer_model(json)
-    "Skroutz::#{resource_key(json).capitalize}".safe_constantize
+    "Skroutz::Resources::#{resource_key(json).capitalize}".safe_constantize
   end
 
   # Tries to match a resource class for the collection response
   def infer_collection(json)
-    "Skroutz::#{collection_resource_key(json).classify}".safe_constantize
+    "Skroutz::Resources::#{collection_resource_key(json).classify}".safe_constantize
   end
 
   # Tries to match a resource class for the collection response

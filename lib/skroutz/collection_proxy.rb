@@ -71,7 +71,7 @@ class Skroutz::CollectionProxy
 
   # @return [Skroutz::Resource] the resource class to use for parsing
   def model_name
-    @model_name ||= "Skroutz::#{resource.classify}".constantize
+    @model_name ||= "Skroutz::Resources::#{resource.classify}".constantize
   end
 
   private

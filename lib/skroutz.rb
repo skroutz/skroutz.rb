@@ -5,12 +5,9 @@ require 'active_support/all'
 require 'skroutz/version'
 require 'skroutz/errors'
 require 'skroutz/inflections'
+require 'skroutz/resources'
 
 module Skroutz
-  RESOURCES = %w[category sku product shop manufacturer filter_group autocomplete
-                 location address specification review favorite_list favorite
-                 notification]
-
   autoload :Client, 'skroutz/client'
   autoload :Default, 'skroutz/default'
   autoload :Parsing, 'skroutz/parsing'
@@ -19,12 +16,4 @@ module Skroutz
   autoload :UrlHelpers, 'skroutz/url_helpers'
   autoload :CollectionProxy, 'skroutz/collection_proxy'
   autoload :PaginatedCollection, 'skroutz/paginated_collection'
-
-  RESOURCES.each do |resource|
-    autoload resource.classify.to_sym, "skroutz/#{resource}"
-
-    resource_collection = "#{resource.pluralize}_collection"
-    autoload "#{resource_collection.classify}".to_sym,
-             "skroutz/#{resource_collection.underscore}"
-  end
 end

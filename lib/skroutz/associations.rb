@@ -20,7 +20,7 @@ module Skroutz::Associations
         owner = attributes.key?("#{name}_id") ? nil : self
         prefix = options[:class_name] && owner ? name.to_s : nil
 
-        klass = "Skroutz::#{class_name}Collection".constantize
+        klass = "Skroutz::Resources::#{class_name}Collection".constantize
         collection = klass.new nil, client, owner, prefix: prefix
 
         owner ? collection : collection.find(attributes["#{name}_id"])
