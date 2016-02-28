@@ -37,6 +37,10 @@ gem 'skroutz'
   skroutz = Skroutz::Client.new('client_id', 'client_secret')
 ```
 
+##### Note
+> You may pass the `flavor` keyword argument upon initialization to target one of the
+> available flavors (`skroutz`, `alve`, `scrooge`), default is `skroutz`.
+
 ## Search
 
 ```ruby
@@ -204,6 +208,16 @@ You may even try more complex things like:
 ## Configuration
 
 The following configuration options are available upon client initialization:
+
+### flavor
+
+Which flavor (eg. country) to target.  
+**Default**: `skroutz`.
+
+```ruby
+# Set `scrooge` as the flavor
+client = Skroutz::Client.new('client_id', 'client_secret', flavor: :scrooge)
+```
 
 ### logger
 

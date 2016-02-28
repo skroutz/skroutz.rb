@@ -2,6 +2,21 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## Unreleased
+
+### Added
+
+* Ability to specify flavor upon initialization
+
+  ```ruby
+  client = Skroutz::Client.new('client_id', 'client_secret', flavor: :scrooge)
+  # client now points to scrooge.co.uk for authentication and API requests
+  ```
+
+### Changed
+
+* Resource classes are namespaced under Skroutz::Resources
+
 ## [0.2.0] - 2016-01-04
 
 ### Added
