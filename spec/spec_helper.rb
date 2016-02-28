@@ -59,7 +59,7 @@ end
 end
 
 def stub_api_call(verb, path, params = {})
-  stub_request(verb, "#{Skroutz::Default.to_hash[:api_endpoint]}/#{path}").
+  stub_request(verb, "#{Skroutz::Default.to_hash(flavor: :skroutz)[:api_endpoint]}/#{path}").
     with(query: params)
 end
 

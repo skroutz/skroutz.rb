@@ -10,7 +10,7 @@ class Skroutz::Client
   def initialize(client_id, client_secret, config = {})
     @client_id = client_id
     @client_secret = client_secret
-    @config = Skroutz::Default.to_hash.merge config
+    @config = Skroutz::Default.to_hash(flavor: config[:flavor]).merge config
   end
 
   # Returns the token used for OAuth2.0 authorization
