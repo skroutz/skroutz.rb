@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Skroutz::Favorite do
+describe Skroutz::Resources::Favorite do
   include_context 'resource'
 
   let(:attributes) { {} }

@@ -59,7 +59,7 @@ describe Skroutz::CollectionProxy do
 
       before do
         allow(proxy).to receive(:resource).and_return(resource)
-        stub_const("Skroutz::#{resource.classify}", resource_class)
+        stub_const("Skroutz::Resources::#{resource.classify}", resource_class)
       end
 
       subject { proxy.model_name }

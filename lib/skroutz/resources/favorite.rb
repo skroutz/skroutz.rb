@@ -1,4 +1,4 @@
 # @see http://developer.skroutz.gr/api/v3/favorites/
-class Skroutz::Favorite < Skroutz::Resource
+class Skroutz::Resources::Favorite < Skroutz::Resource
   association :sku
 end
