@@ -268,9 +268,9 @@ The set of [permissions](http://developer.skroutz.gr/authorization/permissions/)
 
 The following Ruby implementations are supported:
 
-* MRI 1.9.3
 * MRI 2.1.0
 * MRI 2.2.0
+* MRI 2.3.0
 
 It may inadvertently work (or seem to work) on other Ruby implementations, 
 however support will only be provided for the versions listed above.
