@@ -59,6 +59,17 @@ class Skroutz::CollectionProxy
     yield response
   end
 
+  # Handles page enumeration
+  # @param [Integer] per the number of elements per page
+  # @yield [Skroutz::PaginatedCollection] each page
+  # @return [Enumerator] enumerator yielding pages
+  def each_page(per: 25)
+    return to_enum(:each_page, per: per) unless block_given?
+
+    yield page = page(1, per: per)
+    yield page = page.next_page while page.next?
+  end
+
   # @return [String] The name of the proxied resource
   def resource
     @resource ||= self.class.to_s.demodulize.chomp('Collection').tableize.singularize
