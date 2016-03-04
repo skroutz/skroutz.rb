@@ -159,6 +159,22 @@ For paginated responses, the following methods will be available:
 * next
 * previous
 
+You may also use `#each_page` to iterate through pages.
+
+```ruby
+skroutz = Skroutz::Client.new('client_id', 'client_secret')
+skroutz.categories.each_page do |categories|
+  # Do something with this page of categories
+end
+
+# Get all pages at once
+skroutz.categories.each_page.to_a
+
+# each_page without a block returns an Enumerator, so you can use Enumerable methods
+# Example: Fetch and return only the first 10 pages from the API
+skroutz.categories.each_page.first(10)
+```
+
 ## Associations
 
 For every `Skroutz::Resource` the available associations can be inspected with:
