@@ -292,7 +292,7 @@ The value of the HTTP `Accept` header to specify the desired [media type](http:/
 ### application_permissions
 
 The set of [permissions](http://developer.skroutz.gr/authorization/permissions/) to be obtained.  
-**Default**: `['public']
+**Default**: `['public']`
 
 ## Compatibility
 
