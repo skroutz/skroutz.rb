@@ -93,7 +93,7 @@ shared_examples 'an error handled request' do
   end
 
   describe 'response timeout' do
-    let(:response) { request_stub.to_timeout }
+    let(:response) { request_stub.to_raise(Timeout::Error) }
 
     it 'raises Skroutz::TimeoutError' do
       expect { request }.to raise_error(Skroutz::TimeoutError)
