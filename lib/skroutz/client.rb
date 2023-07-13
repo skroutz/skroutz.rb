@@ -103,6 +103,7 @@ class Skroutz::Client
     client.adapter @config[:adapter] || Faraday.default_adapter
     client.headers = default_headers
     client.options.timeout = @config[:timeout]
+    client.ssl.version = OpenSSL::SSL::TLS1_2_VERSION
   end
 
   def default_headers
